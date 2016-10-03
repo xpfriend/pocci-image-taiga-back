@@ -28,6 +28,8 @@ RUN adduser -h /taiga -D taiga \
     && pip install -r requirements.txt \
     && pip install circus git+https://github.com/ototadana/taiga-contrib-ldap-auth.git
 
+RUN echo "taiga ALL=(ALL) NOPASSWD:ALL" >>/etc/sudoers
+
 COPY ./bin/. /taiga/bin/
 RUN chown -R taiga:taiga /taiga
 VOLUME ["/taiga/media", "/taiga/static"]
