@@ -10,7 +10,7 @@ ENV LIBXSLT_DEV_VERSION 1.1.29-r0
 ENV NETCAT_VERSION 1.89-r2
 ENV POSTGRESQL_DEV_VERSION 9.5.4-r0
 ENV LINUX_HEADERS_VERSION 4.4.6-r1
-ENV TAIGA_BRANCH pocci
+ENV TAIGA_BACK_VERSION a9d46c2bea8e7dddd60846b3e0e3eb6f6f8288b6
 
 ENV LIBRARY_PATH=/lib:/usr/lib
 
@@ -24,9 +24,10 @@ RUN adduser -h /taiga -D taiga \
     && mkdir /taiga/media /taiga/static \
     && git clone https://github.com/xpfriend/taiga-back.git /taiga/taiga-back \
     && cd /taiga/taiga-back \
-    && git checkout ${TAIGA_BRANCH} \
+    && git checkout pocci \
     && pip install -r requirements.txt \
-    && pip install circus git+https://github.com/ototadana/taiga-contrib-ldap-auth.git
+    && pip install circus git+https://github.com/ototadana/taiga-contrib-ldap-auth.git \
+    && echo "${TAIGA_BACK_VERSION}" > /taiga/version
 
 RUN echo "taiga ALL=(ALL) NOPASSWD:ALL" >>/etc/sudoers
 
