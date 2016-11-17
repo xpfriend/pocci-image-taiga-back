@@ -26,7 +26,7 @@ RUN adduser -h /taiga -D taiga \
     && cd /taiga/taiga-back \
     && git checkout pocci \
     && pip install -r requirements.txt \
-    && pip install circus git+https://github.com/ototadana/taiga-contrib-ldap-auth.git \
+    && pip install circus git+https://github.com/ototadana/taiga-contrib-ldap-auth.git@pocci \
     && echo "${TAIGA_BACK_VERSION}" > /taiga/version
 
 RUN echo "taiga ALL=(ALL) NOPASSWD:ALL" >>/etc/sudoers
